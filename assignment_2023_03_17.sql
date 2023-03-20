@@ -1,6 +1,6 @@
--- Jabra Ram
+-- PostgreSQL
 
--- Schema 
+-- Question 1: Create Schema 
 
 create table jobs(
     job_id int primary key,
@@ -59,7 +59,8 @@ create table dependents(
     foreign key(employee_id) references employees(employee_id)
 );
 
--- Insertion 
+-- Question 2 : Insert 10 rows in Employee table and 5 rows in all other tables. 
+
 insert into jobs(job_id, job_title, min_salary, max_salary) values
 (1, 'Software Engineer', 600000, 1000000),
 (2, 'Senior Software Engineer', 1000000, 1500000),
@@ -116,8 +117,10 @@ insert into dependents(first_name, last_name, relationship, employee_id) values
 ('Menka', 'Gupta', 'mother', 10),
 ('Kushal', 'Sharma', 'father', 11);
 
--- Modification
-
+-- Question 3: 
+-- a: In Departments table, add a new field 'manager_name' of type VARCHAR
 alter table departments add column manager_name varchar(255);
+-- b: REMOVE field max_salary from jobs
 alter table jobs drop column max_salary;
+-- c: In the locations table, rename postal_code column to pincode
 alter table locations rename column postal_code to pincode;
