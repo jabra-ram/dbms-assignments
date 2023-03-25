@@ -6,8 +6,7 @@ create table jobs(
     job_id int primary key,
     job_title varchar(255) not null,
     min_salary int,
-    max_salary int,
-    check (min_salary>1000 && max_salary>=min_salary)
+    max_salary int
 );
 create table regions(
     region_id int primary key,
@@ -26,7 +25,6 @@ create table locations(
     city varchar(255) not null,
     state_province varchar(255) not null,
     country_id int,
-    check(postal_code<1000000000),
     foreign key(country_id) references countries(country_id)
 );
 create table departments(
@@ -37,8 +35,8 @@ create table departments(
 );
 create table employees(
     employee_id serial primary key,
-    first_name varchar(255) not null,
-    last_name varchar(255) not null,
+    first_name varchar(255),
+    last_name varchar(255),
     email varchar(255),
     phone_number numeric,
     hire_date date not null,
@@ -52,8 +50,8 @@ create table employees(
 );
 create table dependents(
     dependent_id serial primary key,
-    first_name varchar(255) not null,
-    last_name varchar(255) not null,z
+    first_name varchar(255),
+    last_name varchar(255),
     relationship varchar(255) not null,
     employee_id int,
     foreign key(employee_id) references employees(employee_id)
@@ -107,15 +105,15 @@ insert into employees(first_name, last_name, email, phone_number, hire_date, job
 ('Sayantan','Sinharay', 'sayantan@kreeti.com','8234544922','15-02-2023',5,600000,1, 2),
 ('Rahul','Verma', 'rahul@kreeti.com','9327492402','01-01-2022',1,900000,1, 2),
 ('Manish','Sharma', 'manish@kreeti.com','7837434923','15-02-2023',1,720000,1, 4),
-('Pooja','Gupta', 'pooja@kreeti.com','9734389334','10-06-2021',5,800000,1, 4);
+('Pooja','Gupta', 'pooja@kreeti.com','9734389334','10-06-2021',5,800000,1, 4),
 ('Divya','Sharma', 'divya@kreeti.com','8053189323','07-09-2020',3,850000,1, 3);
 
 insert into dependents(first_name, last_name, relationship, employee_id) values
-('Prakash', 'Pareek', 'father', 4),
-('Rohit', 'Verma', 'father', 8),
-('Jay', 'Sharma', 'brother', 9),
-('Menka', 'Gupta', 'mother', 10),
-('Kushal', 'Sharma', 'father', 11);
+('Prakash', 'Pareek', 'father', 3),
+('Rohit', 'Verma', 'father', 7),
+('Jay', 'Sharma', 'brother', 8),
+('Menka', 'Gupta', 'mother', 9),
+('Kushal', 'Sharma', 'father', 10);
 
 -- Question 3: 
 -- a: In Departments table, add a new field 'manager_name' of type VARCHAR
@@ -124,3 +122,16 @@ alter table departments add column manager_name varchar(255);
 alter table jobs drop column max_salary;
 -- c: In the locations table, rename postal_code column to pincode
 alter table locations rename column postal_code to pincode;
+
+-- Question 4:
+-- a: First_name and last_name should not be null
+alter table employees alter column first_name set not null;
+alter table employees alter column last_name set not null;
+alter table dependents alter column first_name set not null;
+alter table dependents alter column last_name set not null;
+
+-- b: Min_salary must be greater than 1000
+alter table jobs add check(min_salary>1000);
+
+-- c: Max length of postal_code should be 10.
+alter table locations add check(pincode<1000000000);
