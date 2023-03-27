@@ -19,4 +19,4 @@ select first_name, manager_id, salary from employees where department_id=101 ord
 
 -- 6.Find all the first_name that start with the letter “A”, and find all the last_name that have “TH” in the 2nd and 3rd positions.
 select first_name from employees where first_name like 'A%';
-select last_name from employees where last_name like '_TH%' or last_name like '__TH%';
+select last_name from employees where last_name like '_TH%';
