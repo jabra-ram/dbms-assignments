@@ -15,6 +15,7 @@ EnrollmentNo →StudentName
 
 ### Answer
 (EnrollmentNo, courseNo)<sup>+</sup> = `{EnrollmentNo, courseNo, StudentName, grade}`
+
 (StudentName, courseNo)<sup>+</sup> = `{EnrollmentNo, courseNo, StudentName, grade}`
 
 candidate keys = `{EnrollmentNo, courseNo}`, `{StudentName, courseNo}`
@@ -22,6 +23,7 @@ candidate keys = `{EnrollmentNo, courseNo}`, `{StudentName, courseNo}`
 - The schema is in 2NF as there is no partial functional dependency.
 - The schema is in 3NF as there is no transitive dependency.
 - The schema is not in BCNF normal form as StudentName is not superkey in functional dependency `StudentName → EnrollmentNo`.
+
 The highest normal form of schema is 3NF.
 
 ### Question 2
@@ -37,7 +39,7 @@ c. If the relation is not in BCNF, decompose it until it becomes BCNF. At each s
 new relation, decompose and re-compute the keys and the normal forms they satisfy.
 
 ### Answer
-(a)
+**(a)**
 
 (c,e)<sup>+</sup> = `{c,e,a,d,b}`
 
@@ -45,14 +47,15 @@ candidate key = `{c,e}`
 
 There is only 1 candidate key.
 
-(b)
+**(b)**
 
 - The schema is in 1NF as there is no multivalued attribute(no data is provided).
 - The schema is not in 2NF as there is a partial functional dependency (C → A).
 
 The highest normal form of schema is 1NF.
 
-(c)
+**(c)**
+
 The relation `R(A, B, C, D, E)` in 1NF.
 
 We can decompose it to `R1(B, C, D, E)` and `R2(C, A)` to make it in 2NF.
@@ -76,7 +79,7 @@ a. Find all keys of R based on these functional dependencies.
 b. Is this relation in Boyce-Codd Normal Form? Is it 3NF? Explain your answers
 
 ### Answer
-(a)
+**(a)**
 
 (A,B,C)<sup>+</sup> = {A,B,C,D,E,F}
 
@@ -91,7 +94,7 @@ Super Keys:
 `{A,B,C}`, `{A,C,D}`, `{A,B,C,D}`, `{A,B,C,E}`, `{A,B,C,F}`, `{A,C,D,E}`,`{A,C,D,F}`, `{A,B,C,D,E}`,
 `{A,B,C,D,F}`, `{A,C,D,E,F}`, `{A,B,C,E,F}`,`{A,B,C,D,E,F}`
 
-(b)
+**(b)**
 
 The relation is not in Boyce-Codd Normal Form and not in 3NF as it is not in 2NF.
 The relation is not in 2NF because of partial dependency `CD→F`.
